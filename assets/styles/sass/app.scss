@@ -1,0 +1,27 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+//Base
+@import "base/fonts";
+@import "base/variables";
+@import "base/base";
+
+//Components
+
+//Pages
+@import "pages/connexion";
+
+//import fontawesome
+$fa-font-path: "../../webfonts";
+@import "fontawesome/fontawesome";
+@import "fontawesome/brands";
+@import "fontawesome/regular";
+@import "fontawesome/solid";

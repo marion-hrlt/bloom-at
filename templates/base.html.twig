@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/x-icon" href="{{ asset('/build/images/logo.svg') }}"/>
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class="bg-white dark:bg-darkest">
+
+		<header class="flex justify-between fixed w-full bg-white z-10 h-20 pb-3 top-0 dark:bg-darkest">
+			<div class="title w-42 ml-2">
+				{% if app.request.get('_route') != 'app_login' and app.request.get('_route') != 'register' %}
+					<h1 class="title-logo text-gradient mt-3 text-4xl bg-gradient-to-r from-green-400 to-purple-400 dark:from-white dark:to-white">
+						Bloom.<span class="text-2xl">@</span>
+					</h1>
+				{% endif %}
+			</div>
+
+			<div class="flex items-center mt-2 mr-5">
+				{% if app.request.get('_route') != 'app_login' and app.request.get('_route') != 'register' %}
+					<div class="user flex items-center mr-5">
+						<div class="mr-2 text-gray-400">
+							<p class="text-sm uppercase hidden">{{app.user.name}}
+								{{app.user.firstname}}</p>
+						</div>
+						<img class="w-12 h-12 rounded-full object-cover" src="{{ asset('/uploads/' ~ app.user.profilPicture) }}" alt="Photo de profil utilisateur">
+					</div>
+					<div>
+						<a class="text-purple-300 py-1 dark:text-gray-200" href="{{ path('post_new') }}">
+							<svg class="mr-5 w-8" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+							</svg>
+						</a>
+					</div>
+				{% endif %}
+
+				<div class="dark-mode cursor-pointer">
+					<div class="mode lightmode">
+						<p class="flex items-center">
+							<i class="faMod far fa-sun text-indigo-600 text-2xl"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		{% if app.request.get('_route') != 'app_login' and app.request.get('_route') != 'register' %}
+			<section class="menu fixed flex justify-around bg-purple-50 bottom-0 left-0 w-full z-10 pt-2 pb-2 border border-transparent rounded-t-3xl lg:inset-y-auto lg:left-0 lg:h-screen lg:mt-32 lg:w-48 lg:flex-col md:bottom-0 md:bg-white dark:bg-darkmobile">
+
+				<a href="{{ path('homepage') }}" class="text-gray-400 dark:text-gray-400">
+					<i class="fas fa-home text-xl"></i>
+					<span class="ml-5 hidden lg:block">Home</span>
+				</a>
+				<a href="{{ path('interests') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+					<i class="fab fa-angellist text-xl"></i>
+					<span class="ml-5 hidden log:block">Centres d'intérêts</span>
+				</a>
+				<a href="{{ path('dashboard') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+					<i class="fas fa-tachometer-alt text-xl"></i>
+					<span class="ml-5 hidden lg:block">Dashboard</span>
+				</a>
+				<a href="{{ path('account') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+					<i class="fas fa-user text-xl"></i>
+					<span class="ml-5 hidden lg:block">Mon profil</span>
+				</a>
+				<a href="{{ path('app_logout') }}" class="lg:mt-6 text-darkbg dark:text-white">
+					<i class="fas fa-sign-out-alt text-xl"></i>
+					<span class="ml-5 hidden lg:block">Déconnexion</span>
+				</a>
+			</section>
+		{% endif %}
+		<main id="swup" class="content-main container m-auto pr-5 pl-5 pt-28 transition-fade lg:pl-48"> {% block body %}{% endblock %}
+			</main>
+			<footer class="fixed inset-x-0 bottom-0">
+				<img class="w-full object-cover" src="{{ asset('/build/images/wave.svg') }}" alt="Wave Design footer">
+			</footer>
+
+		</body>
+	</html>

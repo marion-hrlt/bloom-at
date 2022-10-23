@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bloom(at) | Mon profil
+{% endblock %}
+
+{% block body %}
+
+	<div class="user-account px-20">
+		<div class="flex justify-between items-center">
+			<div>
+				<img class="m-auto w-28 h-28 rounded-full object-cover mb-3" src="{{ asset('/uploads/' ~ app.user.profilPicture) }}" alt="Photo de profil utilisateur">
+				<p class="uppercase text-center text-gradient font-bold text-lg bg-gradient-to-r from-blue-400 to-pink-400 dark:from-white dark:to-white dark:border-white">{{app.user.firstname}}
+					{{app.user.name}}</p>
+			</div>
+			<div>
+				<a href="" class="ml-3 mr-3 px-5 py-3 text-gradient text-lg bg-gradient-to-r from-blue-400 to-pink-400 border border-purple-300 rounded-md dark:from-white dark:to-white dark:border-white">Modifier mes informations</a>
+				<a href="" class="ml-3 mr-3 px-5 py-3 text-gradient text-lg bg-gradient-to-r from-blue-400 to-pink-400 border border-purple-300 rounded-md dark:from-white dark:to-white dark:border-white">Modifier mon mot de passe</a>
+			</div>
+		</div>
+		<div class="mt-10">
+			<h2 class="text-gray-500 font-semibold text-lg dark:text-gray-300">Présentation personnelle</h2>
+			<p class="mt-2 text-gray-400 dark:text-gray-400">{{app.user.presentation}}</p>
+		</div>
+		<div class="mt-10">
+			<h2 class="text-gray-500 font-semibold text-lg dark:text-gray-300 mb-5">Mes centres d'intérêts</h2>
+			{% if app.user.categories or app.user.types or app.user.relations %}
+				{% for category in app.user.categories %}
+					<span class="text-white bg-green-300 rounded-full py-1 px-2 text-sm font-normal s-font">{{category.name}}</span>
+				{% endfor %}
+				{% for type in app.user.types %}
+					<span class="text-white bg-indigo-400 rounded-full py-1 px-2 text-sm font-normal s-font">{{type.name}}</span>
+				{% endfor %}
+				{% for relation in app.user.relations %}
+					<span class="text-white bg-blue-300 rounded-full py-1 px-2 text-sm font-normal s-font">{{relation.name}}</span>
+				{% endfor %}
+			{% else %}
+				<p class="text-gray-400 dark:text-gray-400">Vous n'avez pas encore défini vos centres d'intérêts. Pour cela, modifiez vos informations.</p>
+			{% endif %}
+
+
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{{ form_start(form) }}
+
+
+{% if flow.getCurrentStepNumber() == 1 %}
+	<div class="px-20">
+		<div class="hidden">
+			{{ form_label(form.author, 'Auteur', { 'label_attr': {'class': 'uppercase text-gray-400 mt-3'} }) }}
+			{{ form_errors(form.author) }}
+			{{ form_widget(form.author, { 'attr': {'class': 'form-input w-full py-1 rounded-full border-gray-300 text-indigo-500 mt-3 focus:border-pink-800'} }) }}
+		</div>
+		<div>
+			{{ form_label(form.title, 'Titre', { 'label_attr': {'class': 'uppercase text-gray-400 mt-3'} }) }}
+			{{ form_errors(form.title) }}
+			{{ form_widget(form.title, { 'attr': {'class': 'form-input w-full py-1 rounded-full border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+		</div>
+		<div class="mt-5">
+			{{ form_label(form.note, 'Note personnelle', { 'label_attr': {'class': 'uppercase text-gray-400 mt-3'} }) }}
+			{{ form_errors(form.note) }}
+			{{ form_widget(form.note, { 'attr': {'class': 'w-full form-input py-1 rounded-xl border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+		</div>
+		<div class="mt-5">
+			{{ form_label(form.content, 'Contenu / Description', { 'label_attr': {'class': 'uppercase text-gray-400 mt-3'} }) }}
+			{{ form_errors(form.content) }}
+			{{ form_widget(form.content, { 'attr': {'class': 'w-full form-input py-1 rounded-xl border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+		</div>
+	</div>
+{% endif %}
+
+
+{% if flow.getCurrentStepNumber() == 2 %}
+	<div>
+		{{ form_label(form.categories, 'Catégories', { 'label_attr': {'class': 'font-poiret uppercase text-lg text-indigo-500 mt-3 mr-3'} }) }}
+		{{ form_errors(form.categories) }}
+		{{ form_widget(form.categories, { 'attr': {'class': 'form-input w-full py-1 rounded-full border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+	</div>
+	<div class="mt-5">
+		{{ form_label(form.type, 'Type de post', { 'label_attr': {'class': 'font-poiret uppercase text-lg text-indigo-500 mt-3 mr-3'} }) }}
+		{{ form_errors(form.type) }}
+		{{ form_widget(form.type, { 'attr': {'class': 'w-full form-input py-1 rounded-xl border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+	</div>
+	<div class="mt-5">
+		{{ form_label(form.relation, 'Type de relation', { 'label_attr': {'class': 'font-poiret uppercase text-lg text-indigo-500 mt-3 mr-3'} }) }}
+		{{ form_errors(form.relation) }}
+		{{ form_widget(form.relation, { 'attr': {'class': 'w-full form-input py-1 rounded-xl border-gray-300 text-indigo-500 mt-3 focus:border-pink-800 dark:bg-gray-300'} }) }}
+	</div>
+{% endif %}
+
+
+{% include '@CraueFormFlow/FormFlow/buttons.html.twig' %}
+
+
+<button class="mt-3 px-3 py-1 duration-500 border border-gray-200 rounded-md bg-white text-gray-400 dark:text-gray-800 dark:border-gray-800 hover:bg-gray-300 hover:text-white float-right">{{ button_label|default('Publier') }}</button>
+
+{{ form_end(form) }}

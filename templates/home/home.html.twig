@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Positiv(at) | Home
+{% endblock %}
+
+{% block body %}
+
+	<div class="posts grid xl:grid-cols-3 gap-4 lg:grid-cols-2 sm:grid-cols-1">
+
+		{% for post in posts %}
+
+			<div class="posts__item shadow rounded-3xl border-2 border-purple-200 dark:bg-darkbg relative">
+
+				<div class="flex items-center p-2">
+					<img class="w-10 h-10 rounded-full object-cover" src="{{ asset('/uploads/' ~ post.author.profilPicture) }}" alt="">
+					<div class="ml-2 text-gray-400">
+						<p class="uppercase text-sm">{{post.author.firstname}}
+							{{post.author.name}}</p>
+						<p class="font-light text-xs">{{post.createdAt|date("d/m/y H:m")}}</p>
+					</div>
+				</div>
+				<div>
+					<img class="w-full h-44 object-cover" src="{{ asset('/uploads/' ~ post.img) }}" alt="">
+				</div>
+				<div class="py-2 px-4 mb-3 pb-9">
+					<div class="leading-8">
+						{% for category in post.categories %}
+							<span class="text-white bg-green-300 rounded-full py-1 px-2 text-sm font-normal s-font">{{category.name}}</span>
+						{% endfor %}
+						<span class="text-white bg-indigo-400 rounded-full py-1 px-2 text-sm font-normal s-font">{{post.type.name}}</span>
+						<span class="text-white bg-blue-300 rounded-full py-1 px-2 text-sm font-normal s-font">{{post.relation.name}}</span>
+
+					</div>
+					<h2 class="text-gradient text-lg mt-3 mb-2 font-bold bg-gradient-to-r from-blue-400 to-pink-400 dark:from-white dark:to-white">{{post.title}}</h2>
+					<p class="text-gray-400 text-base font-light">{{post.note}}</p>
+				</div>
+				<div class="absolute bottom-0 left-0 w-full h-9">
+					<hr>
+					<div class="flex justify-between mx-2 my-1">
+						<div class="flex">
+							<div class="mx-2 text-gray-500">
+								<i class="far fa-heart text-xl"></i>
+								<span class="s-font">2</span>
+							</div>
+							<div class="mx-2 text-gray-500">
+								<i class="fab fa-angellist text-xl"></i>
+								<span class="s-font">4</span>
+							</div>
+						</div>
+						<div class="mx-2 text-gray-500">
+							<i class="fas fa-comment text-xl"></i>
+							<span class="s-font">4</span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+
+	</div>
+
+
+{% endblock %}

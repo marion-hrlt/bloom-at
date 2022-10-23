@@ -1,0 +1,59 @@
+{% use '@CraueFormFlow/FormFlow/stepList_blocks.html.twig' %}
+
+{%- if flow.getStepLabels() is not empty -%}
+	<div class="w-full py-6 mb-10">
+		<div class="flex">
+			{% set numberStep = flow.getStepLabels()|length %}
+			{% for stepLabel in flow.getStepLabels() %}
+
+				{% set icon_border = '' %}
+				{%- if loop.index == flow.getCurrentStepNumber() -%}
+					{% set width = 100 %}
+					{% set icon_bg = 'bg-gradient-to-r from-blue-400 to-pink-400' %}
+					{% set icon_color = 'text-white' %}
+				{%- elseif flow.isStepSkipped(loop.index) -%}
+					{% set width = 100 %}
+					{% set icon_bg = 'bg-gray-600' %}
+					{% set icon_color = 'text-white' %}
+				{%- elseif flow.isStepDone(loop.index) -%}
+					{% set width = 100 %}
+					{% set icon_bg = 'bg-indigo-400' %}
+					{% set icon_color = 'text-white' %}
+				{% else %}
+					{% set width = 0 %}
+					{% set icon_bg = '' %}
+					{% set icon_color = 'text-gray-600 dark:text-gray-400' %}
+					{% set icon_border = 'border-2 border-gray-200' %}
+				{%- endif -%}
+
+				<div class="w-1/{{ numberStep }}">
+					<div class="relative mb-2">
+						{% if not loop.first %}
+							<div class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
+								<div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
+									<div class="w-0 bg-indigo-300 py-1 rounded" style="width: {{ width }}%;"></div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="w-10 h-10 mx-auto {{ icon_bg }} rounded-full {{ icon_border }} text-lg text-white flex items-center">
+							<span class="text-center {{ icon_color }} w-full">
+								{% if loop.first %}
+									<i class="fas fa-pencil-alt"></i>
+								{% elseif loop.index == 2 %}
+									<i class="fas fa-tags"></i>
+								{% elseif loop.index == 3 %}
+									<i class="fas fa-photo-video"></i>
+								{% elseif loop.last %}
+									<i class="fas fa-check"></i>
+								{% endif %}
+							</span>
+						</div>
+					</div>
+					<div class="text-xs text-center md:text-base">
+						<p class="text-gray-400 dark:text-gray-300">{{ block('craue_flow_stepLabel') }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{%- endif -%}

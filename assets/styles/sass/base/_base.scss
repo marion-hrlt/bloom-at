@@ -1,0 +1,48 @@
+.title-logo {
+	font-family: $koho;
+	font-weight: 600;
+
+	span {
+		font-family: $poiret;
+		font-weight: 100;
+	}
+}
+
+::selection {
+	color: #fff !important;
+	background-color: $blue;
+}
+
+::-moz-selection {
+	color: #fff !important;
+	background-color: $blue;
+}
+
+p {
+	margin-bottom: 0 !important;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+input,
+button,
+label,
+.s-font {
+	font-family: $koho;
+}
+
+.font-poiret {
+	font-family: $poiret;
+}
+
+.transition-fade {
+	transition: 0.4s;
+	opacity: 1;
+}
+
+html.is-animating .transition-fade {
+	opacity: 0;
+}
