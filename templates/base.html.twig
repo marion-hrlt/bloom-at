@@ -55,25 +55,25 @@
 		</header>
 
 		{% if app.request.get('_route') != 'app_login' and app.request.get('_route') != 'register' %}
-			<section class="menu fixed flex justify-around bg-purple-50 bottom-0 left-0 w-full z-10 pt-2 pb-2 border border-transparent rounded-t-3xl lg:inset-y-auto lg:left-0 lg:h-screen lg:mt-32 lg:w-48 lg:flex-col md:bottom-0 md:bg-white dark:bg-darkmobile">
+			<section class="menu fixed flex justify-around bg-purple-50 bottom-0 left-0 w-full z-10 p-2 border border-transparent rounded-t-3xl lg:rounded-3xl lg:inset-y-auto lg:left-0 lg:h-96 lg:mt-16 lg:w-36 lg:flex-col md:bottom-0 md:bg-white dark:bg-darkmobile">
 
-				<a href="{{ path('homepage') }}" class="text-gray-400 dark:text-gray-400">
+				<a href="{{ path('homepage') }}" class="text-gray-400 dark:text-gray-400 flex">
 					<i class="fas fa-home text-xl"></i>
 					<span class="ml-5 hidden lg:block">Home</span>
 				</a>
-				<a href="{{ path('interests') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+				<a href="{{ path('interests') }}" class="lg:mt-2 text-gray-400 dark:text-gray-400 flex">
 					<i class="fab fa-angellist text-xl"></i>
-					<span class="ml-5 hidden log:block">Centres d'intérêts</span>
+					<span class="ml-5 hidden lg:block">Centres d'intérêts</span>
 				</a>
-				<a href="{{ path('dashboard') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+				<a href="{{ path('dashboard') }}" class="lg:mt-2 text-gray-400 dark:text-gray-400 flex">
 					<i class="fas fa-tachometer-alt text-xl"></i>
 					<span class="ml-5 hidden lg:block">Dashboard</span>
 				</a>
-				<a href="{{ path('account') }}" class="lg:mt-6 text-gray-400 dark:text-gray-400">
+				<a href="{{ path('account') }}" class="lg:mt-2 text-gray-400 dark:text-gray-400 flex">
 					<i class="fas fa-user text-xl"></i>
 					<span class="ml-5 hidden lg:block">Mon profil</span>
 				</a>
-				<a href="{{ path('app_logout') }}" class="lg:mt-6 text-darkbg dark:text-white">
+				<a href="{{ path('app_logout') }}" class="lg:mt-2 text-darkbg dark:text-white flex">
 					<i class="fas fa-sign-out-alt text-xl"></i>
 					<span class="ml-5 hidden lg:block">Déconnexion</span>
 				</a>
